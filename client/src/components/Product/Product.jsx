@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ProductStore from '../../store/ProductStore.js'
-import './Product.css'
+import '../styles/Product.css'
 import { FaRegHeart } from "react-icons/fa6";
 import { CiShoppingCart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";

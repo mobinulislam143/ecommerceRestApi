@@ -66,7 +66,6 @@ function AppNavbar(props) {
                                         <ul>
                                         <li>User Manager</li>
                                         <li><a class="dropdown-item" href="/login"> Login / Register Page </a></li>
-                                        <li><a class="dropdown-item" href="#"> Empty cart Page </a></li>
                                         <li><a class="dropdown-item" href="/thank-you"> Thank you Page </a></li>
                                         <li><a class="dropdown-item" href="/contact"> Contact Page </a></li>
                                     </ul>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import img1 from '../assets/wrt.jpg'
+import img1 from '../../assets/wrt.jpg'
 import { FaTimes } from "react-icons/fa";
 import { TiPencil } from "react-icons/ti";
-import '../components/styles/CartPage.css'
+import '../styles/CartPage.css'
 function CartPage(props) {
     const [quantity, setQuantity] = useState(1)
     const [price, setPrice] = useState(200)
