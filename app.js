@@ -20,9 +20,9 @@ const mongoose =require('mongoose');
 
 // Security Middleware Implement
 app.use(cookieParser())
-app.use(
+app.use( 
   cors({
-    origin: "http://localhost:7000",
+    origin: "http://localhost:5173",
   })
 )
 app.use(helmet())
