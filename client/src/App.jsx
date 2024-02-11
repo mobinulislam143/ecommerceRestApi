@@ -1,33 +1,51 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import HomePage from "./Pages/HomePage"
-import AppNavbar from "./components/AppNavbar"
-import Footer from "./components/Footer"
-import ErrorPage from "./components/ErrorPage"
-import FAQPage from "./Pages/FAQPage"
-import ThankYouPage from "./Pages/ThankYouPage"
-import ContactPage from "./Pages/ContactPage"
 import BlogPage from "./Pages/BlogPage"
+import CartPage from "./Pages/CartPage"
+import CheckoutPage from './Pages/CheckoutPage'
+import ContactPage from "./Pages/ContactPage"
+import FAQPage from "./Pages/FAQPage"
+import HomePage from "./Pages/HomePage"
+import OtpPage from "./Pages/OtpPage"
 import PrivacyPage from "./Pages/PrivacyPage"
-import SearchPage from "./Pages/SearchPage"
-import ReviewPage from "./Pages/ReviewPage"
+import ProductByBrand from "./Pages/ProductByBrand"
+import ProductByCategory from "./Pages/ProductByCategory"
+import ProductByKeyword from "./Pages/ProductByKeyword"
+import ProductDetails from "./Pages/ProductDetails"
 import ProductPage from "./Pages/ProductPage"
-import CartPage from "./components/Cart/CartPage"
-import CheckoutPage from "./components/Cart/CheckoutPage"
-import RegisterPage from "./components/User/RegisterPage"
+import ProfilePage from "./Pages/ProfilePage"
+import RegisterPage from "./Pages/RegisterPage"
+import ReviewPage from "./Pages/ReviewPage"
+import SearchPage from "./Pages/SearchPage"
+import ThankYouPage from "./Pages/ThankYouPage"
+import ErrorPage from "./components/ErrorPage"
+
+
+
 
 function App() {
+
   return(
     <BrowserRouter>
-      <AppNavbar/>
-
       <Routes>
+
         <Route path='*' element={<ErrorPage/>} />
         <Route path='/' element={<HomePage/>} />
         <Route path='/cart' element={<CartPage/>} />
+        <Route path='/by-brand/:id' element={<ProductByBrand/>} />
+        <Route path='/by-category/:id' element={<ProductByCategory/>} />
+        <Route path='/by-keyword/:Keyword' element={<ProductByKeyword/>} />
+        
+        <Route path='/details/:id' element={<ProductDetails/>} />
+        
+
+
         <Route path="/checkout" element={<CheckoutPage/>} />
         <Route path='/faq' element={<FAQPage/>} />
         <Route path="/login" element={<RegisterPage/>} />
+        <Route path="/otp" element={<OtpPage/>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+
         <Route path="/thank-you" element={<ThankYouPage/>} />
         <Route path="/contact" element={<ContactPage/>} />
         <Route path='/blog' element={<BlogPage/>} />
@@ -37,7 +55,6 @@ function App() {
         <Route path="/product" element={<ProductPage/>} />
         
       </Routes>
-      <Footer/>
     </BrowserRouter>
   )
     

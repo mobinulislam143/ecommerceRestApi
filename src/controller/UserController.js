@@ -5,7 +5,7 @@ const {UserOtpService,
 } = require('../services/UserService')
 exports.UserOtp= async(req,res) => {
     let result = UserOtpService(req)
-    return res.status(200).json(result)    
+    return res.status(200).json({status: "success", data: result})    
 }
 exports.VerifyLogin= async(req,res) => {
     let result = await VerifyOtpService(req)

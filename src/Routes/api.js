@@ -18,8 +18,11 @@ router.get('/ProductListByCategory/:CategoryID', ProductController.ProductListBy
 router.get('/ProductListByRemark/:Remark', ProductController.ProductListByRemark)
 router.get('/ProductListBySmilier/:CategoryID', ProductController.ProductListBySmilier)
 router.get('/ProductDetails/:ProductID', ProductController.ProductDetails)
-router.get('/ProductListByKeyword/:Keyword', ProductController.ProductListByKeyword)
 router.get('/ProductReviewList/:ProductID', ProductController.ProductReviewList)
+router.get('/ProductListByKeyword/:Keyword', ProductController.ProductListByKeyword)
+ 
+
+router.post('/ProductListByFilter', ProductController.ProductListByFilter)
 
 //user manage
 router.get('/userOtp/:email', UserController.UserOtp)

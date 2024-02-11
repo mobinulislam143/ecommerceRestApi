@@ -27,7 +27,7 @@ const CartListService =async(req)=>{
             unwindCategoryStage,
         ])
     
-        return {status: "success", message:result}
+        return {status: "success", data:result}
 
     }catch(err){
         return {status: "fail", message:"Something went wrong"}
@@ -39,7 +39,7 @@ const SaveCartListService =async(req)=>{
         let user_id = req.headers.user_id
         let reqBody = req.body;
         reqBody.userID = user_id
-        await CartModel.create(reqBody,)
+        await CartModel.create(reqBody)
         return {status: "success", message:"Cart list create success"}
  
     }catch(err){
@@ -65,11 +65,11 @@ const RemoveCartListService =async(req)=>{
         let user_id = req.headers.user_id
         let reqBody = req.body
         reqBody.userID = user_id
-
         await CartModel.deleteOne(reqBody)
         return {status: "success", message:"cart remove successfully"}
 
     }catch(err){
+        console.log(err)
         return {status: "fail", message:"Something went wrong"}
     }
 }

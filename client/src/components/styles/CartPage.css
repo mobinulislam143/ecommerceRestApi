@@ -33,18 +33,21 @@
   color: #266bf9;
   font-weight: 600;
 }
-.remove,
-.edit {
+.remove,.edit {
   font-size: 25px;
   cursor: pointer;
   margin: 0 5px;
   transition: 0.2s;
+  color: #234e70;
+  transition: 0.3s;
 }
-.edit:hover {
-  color: #266bf9;
-}
-.remove:hover {
-  color: #266bf9;
+.edit:hover, .remove:hover{
+  color: #234e70;
+  padding: 4px;
+  background-color: #234e70;
+  color: #fffddb;
+  
+
 }
 tbody tr {
   border: 1px solid #ebebeb;
@@ -62,13 +65,15 @@ tbody tr {
   transition: 0.3s;
 }
 .row .same-btn:hover {
-  background-color: #266bf9;
-  color: #fff;
+  background-color: #234e70;
+  color: #fffddb;
 }
+
+/* #fffddb */
 .row .others {
-  background-color: #266bf9;
+  background-color: #234e70;
   border-radius: 0px;
-  color: #fff;
+  color: #fffddb;
   display: inline-block;
   font-size: 14px;
   font-weight: 600;
@@ -79,7 +84,8 @@ tbody tr {
 }
 .row .others:hover {
   background-color: black;
-  color: #fff;
+  color: #fffddb;
+
 }
 .cart-tax label {
   margin: 10px 0;
@@ -94,7 +100,7 @@ tbody tr {
   padding: 10px 8px;
 }
 .cart-tax-btn {
-  background: #266bf9;
+  background: #234e70;
   border-radius: 0px;
   color: #fff;
   display: inline-block;

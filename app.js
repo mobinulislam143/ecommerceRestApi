@@ -28,7 +28,6 @@ app.use(mongoSanitize());
 
 mongoose.set('strictQuery', false);
 
-// Body Parser Implement
 app.use(bodyParser.json())
 
 const limiter= rateLimit({windowMs:15*60*1000,max:3000})
@@ -41,10 +40,7 @@ app.use("/api",appRouter)
 app.use((req, res) => {
     res.status(404).json({ status: "error", message: "Not Found" });
   });
-  app.get('/', (req, res) => {
-    res.status(200).json({ status: 'success', data: "data" });
 
-  })
   
 
 let URI="mongodb+srv://mobinulislam:8NWFTTL3vZqC2W0L@cluster0.mskd8ua.mongodb.net/fullStackEcom";
@@ -53,7 +49,6 @@ mongoose.connect(URI, {
     useNewUrlParser: true,
         useUnifiedTopology: true,
         autoIndex: true,
-
 })
 .then(()=> {
     console.log(`Mongoose is connected`)

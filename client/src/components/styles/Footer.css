@@ -1,13 +1,21 @@
+.footer{
+    background-color: #234E70;
+    color: #FBF8BE;
+}
+.footer p{
+    color: #FBF8BE;
+}
 .footer a{
-    color: black;
     transition: 0.3s;
     cursor: pointer;
     text-decoration: none;
+    color: #FBF8BE;
 }
 .footer a:hover{
     padding-left: 8px;
-    color: rgb(48, 27, 71);
 }
 .footer h6{
     font-size: 24px;
+    font-weight: bold;
+    color: #FBF8BE;
 }

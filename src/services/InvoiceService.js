@@ -169,7 +169,6 @@ const PaymentFailService = async(req) => {
     try{
         let trxID = req.params.trxID
         await InvoiceModel.updateOne({tran_id:trxID}, {payment_status:'Cancel'})
-
         return {status:"Cancel"}
     }catch(e){
         return {status:"fail", message:"Something Went Wrong"}

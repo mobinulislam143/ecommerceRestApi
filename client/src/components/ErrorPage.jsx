@@ -1,9 +1,11 @@
 import React from 'react';
 import './styles/ErrorPage.css'
+import Layout from './Layout/Layout';
 
 function ErrorPage(props) {
     return (
-        <div>
+        <Layout>
+            <div>
             <div className='container'>
                 <div className='errors' style={{margin: '30px 0'}}>
                     <h1>Oops!</h1>
@@ -14,6 +16,7 @@ function ErrorPage(props) {
                 </div>
             </div>
         </div>
+        </Layout>
     );
 }
 
