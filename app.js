@@ -22,7 +22,7 @@ const mongoose =require('mongoose');
 app.use(cookieParser())
 app.use( 
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:7000",
   })
 )
 app.use(helmet())
