@@ -30,7 +30,7 @@ const WishListService  = async(req)=>{
 
     return {status:"success",data:result}
    }catch(err){
-    return {status:"fail",message:"Something Went Wrong !"}
+    return {status:"fail",message:"Something Went Wrong !!"}
 
    }
 }
