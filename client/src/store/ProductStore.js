@@ -20,7 +20,7 @@ const ProductStore = create((set) =>({
 
     ProductListRequest: async () => {
         try {
-            let res = await axios.get(`/api/AllProduct`); // Using absolute URL
+            let res = await axios.get(`${BaseUrl}/api/AllProduct`); // Using absolute URL
             if (res.data['status'] === 'success') {
                 set({ ProductList: res.data['data'] });
             }
@@ -31,7 +31,7 @@ const ProductStore = create((set) =>({
     BrandListRequest:async() =>{
         
         try {
-            let res = await axios.get(`/api/ProductBrandList`); // Using absolute URL
+            let res = await axios.get(`${BaseUrl}/api/ProductBrandList`); // Using absolute URL
             if (res.data['status'] === 'success') {
                 set({BrandList:res.data['data']})
             }
@@ -40,7 +40,7 @@ const ProductStore = create((set) =>({
         }
     },
     CategoryListRequest:async()=>{
-        let res = await axios.get('/api/ProductCategoryList')
+        let res = await axios.get('${BaseUrl}/api/ProductCategoryList')
         if(res.data['status']==='success'){
             set({CategoryList:res.data['data']})
         }
@@ -50,21 +50,21 @@ const ProductStore = create((set) =>({
     ListProduct: null,
     ListByBrandRequest:async(BrandID)=>{
         set({ListProduct:null})
-        let res= await axios.get(`/api/ProductListByBrand/${BrandID}`);
+        let res= await axios.get(`${BaseUrl}/api/ProductListByBrand/${BrandID}`);
         if(res.data['status']==="success"){
             set({ListProduct:res.data['data']})
         }
     },
     ListByKeywordRequest:async (Keyword)=>{
         set({ListProduct:null})
-        let res=await axios.get(`/api/ProductListByKeyword/${Keyword}`);
+        let res=await axios.get(`${BaseUrl}/api/ProductListByKeyword/${Keyword}`);
         if(res.data['status']==="success"){
             set({ListProduct:res.data['data']})
         }
     },
     ListByCategoryRequest:async (CategoryID)=>{
         set({ListProduct:null})
-        let res= await axios.get(`/api/ProductListByCategory/${CategoryID}`);
+        let res= await axios.get(`${BaseUrl}/api/ProductListByCategory/${CategoryID}`);
         if(res.data['status']==="success"){
             set({ListProduct:res.data['data']}) 
         }
@@ -72,7 +72,7 @@ const ProductStore = create((set) =>({
     ListByFilterRequest:async(postBody)=>{
         try{
             set({ListProduct:null})
-            let res=await axios.post(`/api/ProductListByFilter`,postBody);
+            let res=await axios.post(`${BaseUrl}/api/ProductListByFilter`,postBody);
             if(res.data['status']==="success"){
                 set({ListProduct:res.data['data']})
             }
@@ -82,7 +82,7 @@ const ProductStore = create((set) =>({
     },
 
     ListByRemarkRequest:async(Remark)=>{
-        let res = await axios.get(`/api/ProductListByRemark/${Remark}`)
+        let res = await axios.get(`${BaseUrl}/api/ProductListByRemark/${Remark}`)
         if(res.data['status']==='success'){
             set({ListByRemark:res.data['data']})
         }
@@ -90,7 +90,7 @@ const ProductStore = create((set) =>({
 
     Details:null,
     DetailsRequest:async(id)=>{
-        let res=await axios.get(`/api/ProductDetails/${id}`);
+        let res=await axios.get(`${BaseUrl}/api/ProductDetails/${id}`);
         if(res.data['status']==="success"){
             console.log("Mahi")
             set({Details:res.data['data']})
@@ -99,14 +99,14 @@ const ProductStore = create((set) =>({
     
     ReviewList:null,
     ReviewListRequest:async(id)=>{
-        let res=await axios.get(`/api/ProductReviewList/${id}`);
+        let res=await axios.get(`${BaseUrl}/api/ProductReviewList/${id}`);
         if(res.data['status']==="success"){
             set({ReviewList:res.data['data']})
         }
     },
 
     ListBySmilierRequest:async(CategoryID)=>{
-        let res = await axios.get(`/api/ProductListBySmilier/${CategoryID}`)
+        let res = await axios.get(`${BaseUrl}/api/ProductListBySmilier/${CategoryID}`)
         if(res.data['status']==='success'){
             set({ListBySmilier:res.data['data']})
         }
