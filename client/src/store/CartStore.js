@@ -3,8 +3,9 @@ import {create} from "zustand"
 import { unauthorized } from "../utility/utility";
 
 const CartStore = create((set) => ({
-    isCartSubmit: false,
 
+
+    isCartSubmit: false,
    
     CartSaveRequest: async(postBody, productID)=> {
         try{
@@ -21,31 +22,46 @@ const CartStore = create((set) => ({
 
     CartList: null,
     CartCount: 0,
+    CartTotal: 0,
+    CartVatTotal:0,
+    CartPayableTotal: 0,
+
     CartListRequest: async () => {
         try {
             let res = await axios.get('/api/CartList');
             set({ CartList: res.data['data'] });
             set({ CartCount: res.data['data'].length });
+            let total = 0;
+            let vat = 0;
+            let payable = 0
+            res.data['data'].forEach((item,i)=>{
+                if(item['product']['discount']===true){
+                    total = total+parseInt(item['qty'])*parseInt(item['product']['discountPrice'])
+                }else{
+                    total = total+parseInt(item['qty'])*parseInt(item['product']['price'])
+                }
+            })
+
+            vat = total*0.05
+            payable = vat+total
+            set({CartTotal: total})
+            set({CartVatTotal: vat})
+            set({CartPayableTotal: payable})
+
         } catch (e) {
-            if (e.response && e.response.status) {
                 unauthorized(e.response.status);
-            } else {
-                console.error("Error in CartListRequest:", e);
-            }
-        } finally {
-            set({ isCartSubmit: false });
-        }
+           
+        } 
     },
     
 
-    RemoveCartListRequest : async (cartId, productId) => {
+    RemoveCartListRequest : async (cartId) => {
         try {
-            const res = await axios.post('/api/RemoveCartList', { _id: cartId, productID: productId });
-            console.log('RemoveCartListRequest Response:', res.data);
-            return res.data['status'] === 'success';
+            set({CartList: null})
+            const res = await axios.post('/api/RemoveCartList', { _id: cartId });
         } catch (error) {
             console.error('Error while removing cart list:', error);
-            throw error;
+            unauthorized(e.response.status)
         }
     },
 
@@ -55,9 +71,32 @@ const CartStore = create((set) => ({
             let res =await axios.get(`/api/CreateInvoice`);
             window.location.href = res.data['data']['GatewayPageURL']
         }catch(err){
-            unauthorized(e.response.status)
+            unauthorized(err.response.status)
         }finally{
             set({isCartSubmit: false})
+        }
+    },
+
+    InvoiceList: null,
+    InvoiceListRequest: async()=>{
+        try{
+            let res =await axios.get(`/api/InvoiceListService`)
+            set({InvoiceList: res.data['data']})
+
+        }catch(e){
+            unauthorized(e.response.status)
+            
+        }
+    },
+
+    InvoiceDetails: null,
+    InvoiceDetailsRequest: async(id)=> {
+        try{
+            let res =await axios.get(`/api/invoiceProductList/${id}`);
+            set({InvoiceDetails: res.data['data']})
+        }catch(e){
+            unauthorized(e.response.status)
+
         }
     }
 

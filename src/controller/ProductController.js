@@ -2,6 +2,8 @@
 const ProfileModel = require('../models/ProfileModel');
 const ReviewModel = require('../models/ReviewModel');
 const UserModel = require('../models/UserModel')
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
 const {
     BrandListService,
     CategoryListService,
@@ -78,6 +80,32 @@ exports.ProductListByKeyword=async(req,res)=>{
 exports.ProductReviewList=async(req,res)=>{
     let result = await ReviewListService(req)
     return res.status(200).json(result)
+}
+exports.allReview = async(req, res) => {
+    try{
+
+        let result = ReviewModel.find()
+
+        res.status(200).status({status: "success", data: result})
+    }catch(e){
+        res.status(400).status({status: "failed", data: e.toString()})
+    }
+}
+
+exports.createReview = async(req, res)=>{
+    try{
+        let  userId = new ObjectId(req.headers.user_id);
+        let reqBody=req.body;
+        let data=await ReviewModel.create({
+             productID:reqBody['productID'],
+             userID: userId,
+             des:reqBody['des'],
+             rating:reqBody['rating'],
+         })
+        res.status(400).json({status: "success", data: data})
+    }catch(e){
+        res.status(400).json({status: "failed", data: e.toString()})
+    }
 }
 
 

@@ -82,6 +82,7 @@ const ListByCategoryService = async (req) => {
         let MatchStage={$match:{categoryID:CategoryID}}
 
         let JoinWithBrandStage = {$lookup:{from:'brands',localField:'brandID', foreignField:'_id', as:'brands'}}
+        
         let JoinWithCategoryStage = {$lookup:{from:'categories',localField:'categoryID', foreignField:'_id', as:'categorys'}}
         
         let UnWindBrandStage = {$unwind:'$brands'}
@@ -245,6 +246,7 @@ const ListByKeywordService = async (req) => {
     let SearchQuery = { $or: SearchParams };
 
     let MatchStage = { $match: SearchQuery };
+    
     let JoinWithBrandStage = { $lookup: { from: "brands", localField: "brandID", foreignField: "_id", as: "brand" } };
     let JoinWithCategoryStage = { $lookup: { from: "categories", localField: "categoryID", foreignField: "_id", as: "category" } };
     let UnwindBrandStage = { $unwind: "$brand" };
@@ -272,22 +274,25 @@ const ReviewListService = async (req) => {
    try{
     let ProductID=new ObjectId(req.params.ProductID);
     let MatchStage={$match:{productID:ProductID}}
-    
-    let JoinWithProfileStage = {$lookup:{from:'profiles', localField:'userID', foreignField:"userID", as:'profile'}}
+
+    let JoinWithProfileStage= {$lookup:{from:"profiles",localField:"userID",foreignField:"userID",as:"profile"}};
     let UnwindProfileStage={$unwind:"$profile"}
-    let ProjectionStage = {$project:{'des':1, 'rating':1, 'profile.cus_name': 1}}
-    let data = await ReviewModel.aggregate([
+    let ProjectionStage= {$project: {'des': 1, 'rating': 1, 'profile.cus_name': 1}}
+
+    let data= await  ReviewModel.aggregate([
         MatchStage,
         JoinWithProfileStage,
         UnwindProfileStage,
         ProjectionStage
     ])
-    return {stats: 'success', data: data}
+    console.log(data)
+    return {status:"success",data:data}
    }catch(err){
     return {status:"fail",data:err}.toString()
 
    }
 }
+
 
 module.exports = {
     BrandListService,

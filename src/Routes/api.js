@@ -18,7 +18,11 @@ router.get('/ProductListByCategory/:CategoryID', ProductController.ProductListBy
 router.get('/ProductListByRemark/:Remark', ProductController.ProductListByRemark)
 router.get('/ProductListBySmilier/:CategoryID', ProductController.ProductListBySmilier)
 router.get('/ProductDetails/:ProductID', ProductController.ProductDetails)
+
 router.get('/ProductReviewList/:ProductID', ProductController.ProductReviewList)
+router.get('/allreview', ProductController.allReview)
+router.post('/createReview', ProductController.createReview)
+
 router.get('/ProductListByKeyword/:Keyword', ProductController.ProductListByKeyword)
  
 

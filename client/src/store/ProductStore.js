@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { create } from 'zustand'
 
+const BaseUrl = "https://ecommerce-rest-97nlk99ch-mahi17.vercel.app/"
+
 const ProductStore = create((set) =>({
     BrandList:[],
     CategoryList:[],
@@ -16,16 +18,25 @@ const ProductStore = create((set) =>({
 
    
 
-    ProductListRequest:async() =>{
-        let res = await axios.get('/api/AllProduct')
-        if(res.data['status'] === 'success'){
-            set({ProductList:res.data['data']})
+    ProductListRequest: async () => {
+        try {
+            let res = await axios.get(`/api/AllProduct`); // Using absolute URL
+            if (res.data['status'] === 'success') {
+                set({ ProductList: res.data['data'] });
+            }
+        } catch (error) {
+            console.error("Error fetching product list:", error);
         }
     },
     BrandListRequest:async() =>{
-        let res = await axios.get('/api/ProductBrandList')
-        if(res.data['status'] === 'success'){
-            set({BrandList:res.data['data']})
+        
+        try {
+            let res = await axios.get(`/api/ProductBrandList`); // Using absolute URL
+            if (res.data['status'] === 'success') {
+                set({BrandList:res.data['data']})
+            }
+        } catch (error) {
+            console.error("Error fetching product list:", error);
         }
     },
     CategoryListRequest:async()=>{
@@ -81,9 +92,11 @@ const ProductStore = create((set) =>({
     DetailsRequest:async(id)=>{
         let res=await axios.get(`/api/ProductDetails/${id}`);
         if(res.data['status']==="success"){
+            console.log("Mahi")
             set({Details:res.data['data']})
         }
     },
+    
     ReviewList:null,
     ReviewListRequest:async(id)=>{
         let res=await axios.get(`/api/ProductReviewList/${id}`);

@@ -46,6 +46,8 @@ const SaveCartListService =async(req)=>{
         return {status: "fail", message:"Something went wrong"}
     }
 }
+
+
 const UpdateCartListService =async(req)=>{
      try{
         let user_id = req.headers.user_id

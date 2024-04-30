@@ -19,6 +19,9 @@ import ReviewPage from "./Pages/ReviewPage"
 import SearchPage from "./Pages/SearchPage"
 import ThankYouPage from "./Pages/ThankYouPage"
 import ErrorPage from "./components/ErrorPage"
+import WishListPage from "./Pages/WishListPage"
+import OrderPage from "./Pages/OrderPage"
+import InvoicePage from "./Pages/InvoicePage"
 
 
 
@@ -53,6 +56,9 @@ function App() {
         <Route path="/search" element={<SearchPage/>} />
         <Route path="/review" element={<ReviewPage/>} />
         <Route path="/product" element={<ProductPage/>} />
+        <Route path="/wish-list" element={<WishListPage/>} />
+        <Route path="/order-list" element={<OrderPage/>} />
+        <Route path="/invoice/:id" element={<InvoicePage/>} />
         
       </Routes>
     </BrowserRouter>

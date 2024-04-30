@@ -3,7 +3,8 @@ import axios from 'axios'
 import { getEmail, setEmail, unauthorized } from '../utility/utility'
 import Cookie from "js-cookie"
 
-
+const BaseUrl = "https://ecommerce-rest-pzwl6djjy-mahi17.vercel.app"
+ 
 const UserStore = create((set) =>({
 
     isLogin:()=>{
@@ -44,13 +45,15 @@ const UserStore = create((set) =>({
             }
         }))
     },
+
     VerifyLoginRequest:async(otp)=>{
         set({isFormSubmit:true})
-        let email= getEmail();
-        let res=await axios.get(`/api/VerifyLogin/${email}/${otp}`);
+        let email = getEmail();
+        let res = await axios.get(`/api/VerifyLogin/${email}/${otp}`);
         set({isFormSubmit:false})
         return res.data['status'] === "success";
     },
+
     UserLogoutRequest: async()=> {
         set({isFormSubmit: true})
         let res = await axios.get(`/api/UserLogout`)

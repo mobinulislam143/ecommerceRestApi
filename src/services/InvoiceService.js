@@ -141,15 +141,15 @@ const InvoiceProductListService = async(req) => {
        let invoice_id = new ObjectID(req.params.invoice_id)
     
        let matchStage = {$match:{userID:user_id, invoiceID:invoice_id}}
-    //    let JoinStageProduct = {$lookup:{from:'products', localField:'productID', foreignField:'_id', as:'product'}}
-     let JoinStageProduct = {$lookup: {from: "products", localField: "productID", foreignField: "_id", as: "product"}};
-       let unwindStageProduct = {$unwind:"$product"}
-       let invoice = await InvoiceModel.aggregate([
-        matchStage,
-        JoinStageProduct,
-        unwindStageProduct
-       ])
-       return {status:"success", data:invoice}
+
+        let JoinStageProduct = {$lookup: {from: "products", localField: "productID", foreignField: "_id", as: "product"}};
+        let unwindStageProduct = {$unwind:"$product"}
+        let invoice = await InvoiceProductModel.aggregate([
+            matchStage,
+            JoinStageProduct,
+            unwindStageProduct
+        ])
+        return {status:"success", data:invoice}
     }catch(err){
         return {status:"fail", message:"Something Went Wrong"}
 
