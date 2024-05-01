@@ -29,8 +29,8 @@ router.get('/ProductListByKeyword/:Keyword', ProductController.ProductListByKeyw
 router.post('/ProductListByFilter', ProductController.ProductListByFilter)
 
 //user manage
-router.get('/userOtp/:email', UserController.UserOtp)
-router.get('/VerifyLogin/:email/:otp', UserController.VerifyLogin)
+router.post('/userOtp/:email', UserController.UserOtp)
+router.post('/VerifyLogin/:email/:otp', UserController.VerifyLogin)
 router.get('/UserLogout',AuthVerification, UserController.UserLogout)
 //profile create
 router.post('/createProfile', AuthVerification, UserController.CreateProfile)
