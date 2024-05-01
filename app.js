@@ -20,7 +20,7 @@ const mongoose = require('mongoose');
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://h-marts.vercel.app'],
+    origin: ['http://localhost:5173', 'https://h-mart-api.onrender.com'],
     credentials: true,
   })
 );
