@@ -43,7 +43,7 @@ router.post('/RemoveWishList', AuthVerification, WishListController.RemoveWishLi
 router.get('/WishList', AuthVerification, WishListController.WishList)
 
 //cartList 
-router.get('/CartList', AuthVerification, CartListController.CartList)
+router.get('/CartList', CartListController.CartList)
 router.post('/SaveCartList', AuthVerification, CartListController.SaveCartList)
 router.post("/UpdateCartList/:CartID", AuthVerification, CartListController.UpdateCartList)
 router.post("/RemoveCartList", AuthVerification, CartListController.RemoveCartList)
