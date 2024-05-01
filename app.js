@@ -22,10 +22,11 @@ const mongoose =require('mongoose');
 app.use(cookieParser())
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://h-marts.vercel.app"],
     credentials: true,
   })
 );
+app.options('*', cors());
 app.use(helmet())
 app.use(xss())
 app.use(hpp())
