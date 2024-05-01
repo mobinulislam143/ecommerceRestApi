@@ -27,6 +27,14 @@ app.use(
   })
 );
 app.options('*', cors());
+// Error handling middleware for CORS-related errors
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).json({ error: 'Unauthorized request' });
+  } else {
+    next(err);
+  }
+});
 app.use(helmet())
 app.use(xss())
 app.use(hpp())
