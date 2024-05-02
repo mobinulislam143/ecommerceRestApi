@@ -20,7 +20,7 @@ const mongoose = require('mongoose');
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://h-mart-api.onrender.com'],
+    origin: ['https://66330f787d8336631139d715--scintillating-peony-3c6b03.netlify.app/', 'https://h-mart-api.onrender.com'],
     credentials: true,
   })
 );
