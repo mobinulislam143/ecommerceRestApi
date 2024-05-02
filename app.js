@@ -15,17 +15,7 @@ const mongoose = require('mongoose');
 
 app.use(cookieParser());
 const allowedOrigins = ["http://localhost:5173", "https://66330f787d8336631139d715--scintillating-peony-3c6b03.netlify.app/"];
-app.use(cors({
-  origin: function (origin, callback) {
-    // Check if the origin is allowed or if it's a null (server-to-server request)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  // Add other CORS options here if needed
-}));
+app.use(cors(allowedOrigins));
 //app.options('*', cors());
 
 app.use((err, req, res, next) => {
