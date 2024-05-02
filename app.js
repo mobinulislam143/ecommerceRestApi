@@ -14,8 +14,10 @@ const mongoSanitize = require('express-mongo-sanitize');
 const mongoose = require('mongoose');
 
 app.use(cookieParser());
-app.use(cors()); // Updated CORS configuration
-app.options('*', cors());
+app.use(cors({
+  origin: ["http://localhost:7000", "https://66330f787d8336631139d715--scintillating-peony-3c6b03.netlify.app/"],
+}));
+//app.options('*', cors());
 
 app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
