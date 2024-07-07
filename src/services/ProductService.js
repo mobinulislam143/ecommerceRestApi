@@ -138,8 +138,6 @@ const ListByFilterService = async(req)=>{
 
 
 
-
-
         let AddFieldsStage = {
             $addFields: { numericPrice: { $toInt: "$price" }}
         };
@@ -153,8 +151,6 @@ const ListByFilterService = async(req)=>{
             PriceMatchConditions['numericPrice'] = { ...(PriceMatchConditions['numericPrice'] || {}), $lte: maxPrice };
         }
         let PriceMatchStage = { $match: PriceMatchConditions };
-
-
 
 
 
