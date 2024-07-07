@@ -20,8 +20,7 @@ function HomePage(props) {
     })()
   }, []);
     return (
-        <Layout>
-          
+        <Layout>          
               <Carousel/> 
               <Product/> 
               <Categories/> 

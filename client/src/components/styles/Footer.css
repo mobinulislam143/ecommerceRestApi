@@ -1,15 +1,15 @@
 .footer{
     background-color: #234E70;
-    color: #FBF8BE;
+    color: #ffffff;
 }
 .footer p{
-    color: #FBF8BE;
+    color: #ffffff;
 }
 .footer a{
     transition: 0.3s;
     cursor: pointer;
     text-decoration: none;
-    color: #FBF8BE;
+    color: #ffffff;
 }
 .footer a:hover{
     padding-left: 8px;
@@ -17,5 +17,5 @@
 .footer h6{
     font-size: 24px;
     font-weight: bold;
-    color: #FBF8BE;
+    color: #ffffff;
 }

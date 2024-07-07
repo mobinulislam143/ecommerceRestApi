@@ -1,6 +1,12 @@
 import axios from "axios";
 import {create} from "zustand"
 import { unauthorized } from "../utility/utility";
+const BaseUrl = "https://h-mart-api.onrender.com"
+import Cookie from "js-cookie";
+
+// const BaseUrl = "https://h-mart.vercel.app"
+
+
 
 const CartStore = create((set) => ({
 
@@ -11,10 +17,21 @@ const CartStore = create((set) => ({
         try{
             set({isCartSubmit: true})
             postBody.productID = productID
-            let res = await axios.post(`/api/SaveCartList`, postBody)
+            let res = await axios.post(`${BaseUrl}/api/SaveCartList`, postBody,{ headers: {
+                'token': Cookie.get('token') 
+            }})
+            // const res = await axios.get(`${BaseUrl}/api/UserLogout`, {
+                
+            // });
             return res.data['status'] === "success";
-        }catch(err){
-            unauthorized(err.response.status)
+        }catch(error){
+            console.error('Error while removing cart list:', error);
+            if (error.response) {
+                unauthorized(error.response.status);
+            } else {
+                console.error('Network error or server did not respond:', error.message);
+            }
+          
         }finally{
             set({isCartSubmit: false})
         }
@@ -27,8 +44,10 @@ const CartStore = create((set) => ({
     CartPayableTotal: 0,
 
     CartListRequest: async () => {
-        try {
-            let res = await axios.get('/api/CartList');
+        // try {
+            let res = await axios.get(`${BaseUrl}/api/CartList`, { headers: {
+                'token': Cookie.get('token') 
+            }});
             set({ CartList: res.data['data'] });
             set({ CartCount: res.data['data'].length });
             let total = 0;
@@ -48,30 +67,48 @@ const CartStore = create((set) => ({
             set({CartVatTotal: vat})
             set({CartPayableTotal: payable})
 
-        } catch (e) {
-                unauthorized(e.response.status);
+        // } catch (error) {
+        //        console.error('Error while removing cart list:', error);
+        // if (error.response) {
+        //     unauthorized(error.response.status);
+        // } else {
+        //     console.error('Network error or server did not respond:', error.message);
+        // }
            
-        } 
+        // } 
     },
     
 
     RemoveCartListRequest : async (cartId) => {
         try {
             set({CartList: null})
-            const res = await axios.post('/api/RemoveCartList', { _id: cartId });
+            await axios.post(`${BaseUrl}/api/RemoveCartList/`, { '_id': cartId }, { headers: {
+                'token': Cookie.get('token') 
+            }});
         } catch (error) {
             console.error('Error while removing cart list:', error);
-            unauthorized(e.response.status)
+        if (error.response) {
+            unauthorized(error.response.status);
+        } else {
+            console.error('Network error or server did not respond:', error.message);
+        }
         }
     },
 
     CreateInvoiceRequest: async()=>{
         try{
             set({isCartSubmit: true})
-            let res =await axios.get(`/api/CreateInvoice`);
+            let res =await axios.get(`${BaseUrl}/api/CreateInvoice`,{ headers: {
+                'token': Cookie.get('token') 
+            }});
             window.location.href = res.data['data']['GatewayPageURL']
-        }catch(err){
-            unauthorized(err.response.status)
+        }catch(error){
+            console.error('Error while removing cart list:', error);
+        if (error.response) {
+            unauthorized(error.response.status);
+        } else {
+            console.error('Network error or server did not respond:', error.message);
+        }
         }finally{
             set({isCartSubmit: false})
         }
@@ -80,11 +117,18 @@ const CartStore = create((set) => ({
     InvoiceList: null,
     InvoiceListRequest: async()=>{
         try{
-            let res =await axios.get(`/api/InvoiceListService`)
+            let res =await axios.get(`${BaseUrl}/api/InvoiceListService`, { headers: {
+                'token': Cookie.get('token') 
+            }})
             set({InvoiceList: res.data['data']})
 
-        }catch(e){
-            unauthorized(e.response.status)
+        }catch(error){
+           console.error('Error while removing cart list:', error);
+        if (error.response) {
+            unauthorized(error.response.status);
+        } else {
+            console.error('Network error or server did not respond:', error.message);
+        }
             
         }
     },
@@ -92,10 +136,17 @@ const CartStore = create((set) => ({
     InvoiceDetails: null,
     InvoiceDetailsRequest: async(id)=> {
         try{
-            let res =await axios.get(`/api/invoiceProductList/${id}`);
+            let res =await axios.get(`${BaseUrl}/api/invoiceProductList/${id}`, { headers: {
+                'token': Cookie.get('token') 
+            }});
             set({InvoiceDetails: res.data['data']})
-        }catch(e){
-            unauthorized(e.response.status)
+        }catch(error){
+            console.error('Error while removing cart list:', error);
+            if (error.response) {
+                unauthorized(error.response.status);
+            } else {
+                console.error('Network error or server did not respond:', error.message);
+            }
 
         }
     }

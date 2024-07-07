@@ -29,7 +29,7 @@
             let user_id = await UserModel.find({email:email,otp:otp}).select('_id')
 
             let token = EncodeToken(email, user_id[0]['_id'].toString())
-            
+
             // otp code updated 0
             await UserModel.updateOne({email:email}, {$set:{otp:'0'}})
             return {status:"success", message:"Valid OTP",token:token}

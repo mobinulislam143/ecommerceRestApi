@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import BlogPage from "./Pages/BlogPage"
 import CartPage from "./Pages/CartPage"
 import CheckoutPage from './Pages/CheckoutPage'
@@ -23,46 +23,87 @@ import WishListPage from "./Pages/WishListPage"
 import OrderPage from "./Pages/OrderPage"
 import InvoicePage from "./Pages/InvoicePage"
 
+import SessionHelper from "./components/helper/SessionHelper"
+
 
 
 
 function App() {
 
-  return(
-    <BrowserRouter>
-      <Routes>
+  if(SessionHelper.getToken()){
+    return(
+      <BrowserRouter>
+        <Routes>
+          <Route path='*' element={<ErrorPage/>} />
+          <Route path='/cart' element={<CartPage/>} />
+          <Route path='/by-brand/:id' element={<ProductByBrand/>} />
+          <Route path='/by-category/:id' element={<ProductByCategory/>} />
+          <Route path='/by-keyword/:Keyword' element={<ProductByKeyword/>} />
+          
+          <Route path='/details/:id' element={<ProductDetails/>} />
+          
+  
+          <Route path="/login" element={<Navigate to='/' replace />} />
+          <Route exact path='/' element={<HomePage/>} />
 
-        <Route path='*' element={<ErrorPage/>} />
-        <Route path='/' element={<HomePage/>} />
-        <Route path='/cart' element={<CartPage/>} />
-        <Route path='/by-brand/:id' element={<ProductByBrand/>} />
-        <Route path='/by-category/:id' element={<ProductByCategory/>} />
-        <Route path='/by-keyword/:Keyword' element={<ProductByKeyword/>} />
-        
-        <Route path='/details/:id' element={<ProductDetails/>} />
-        
+          <Route path="/otp" element={<Navigate to='/' replace />} />
 
-
-        <Route path="/checkout" element={<CheckoutPage/>} />
-        <Route path='/faq' element={<FAQPage/>} />
-        <Route path="/login" element={<RegisterPage/>} />
-        <Route path="/otp" element={<OtpPage/>} />
-        <Route path="/profile" element={<ProfilePage/>} />
-
-        <Route path="/thank-you" element={<ThankYouPage/>} />
-        <Route path="/contact" element={<ContactPage/>} />
-        <Route path='/blog' element={<BlogPage/>} />
-        <Route path='/privacy' element={<PrivacyPage/>} />
-        <Route path="/search" element={<SearchPage/>} />
-        <Route path="/review" element={<ReviewPage/>} />
-        <Route path="/product" element={<ProductPage/>} />
-        <Route path="/wish-list" element={<WishListPage/>} />
-        <Route path="/order-list" element={<OrderPage/>} />
-        <Route path="/invoice/:id" element={<InvoicePage/>} />
-        
-      </Routes>
-    </BrowserRouter>
-  )
+          <Route path="/checkout" element={<CheckoutPage/>} />
+          <Route path='/faq' element={<FAQPage/>} />
+          <Route path="/profile" element={<ProfilePage/>} />
+  
+          <Route path="/thank-you" element={<ThankYouPage/>} />
+          <Route path="/contact" element={<ContactPage/>} />
+          <Route path='/blog' element={<BlogPage/>} />
+          <Route path='/privacy' element={<PrivacyPage/>} />
+          <Route path="/search" element={<SearchPage/>} />
+          <Route path="/review" element={<ReviewPage/>} />
+          <Route path="/product" element={<ProductPage/>} />
+          <Route path="/wish-list" element={<WishListPage/>} />
+          <Route path="/order-list" element={<OrderPage/>} />
+          <Route path="/invoice/:id" element={<InvoicePage/>} />
+          
+        </Routes>
+      </BrowserRouter>
+    )
+  }else{
+    return(
+      <BrowserRouter>
+        <Routes>
+  
+  
+          <Route path='*' element={<ErrorPage/>} />
+          <Route path='/' element={<HomePage/>} />
+          <Route path='/cart' element={<Navigate to='/login' replace />} />
+          <Route path='/by-brand/:id' element={<ProductByBrand/>} />
+          <Route path='/by-category/:id' element={<ProductByCategory/>} />
+          <Route path='/by-keyword/:Keyword' element={<ProductByKeyword/>} />
+          
+          <Route path='/details/:id' element={<ProductDetails/>} />
+          
+  
+  
+          <Route path="/checkout" element={<Navigate to='/login' replace />} />
+          <Route path='/faq' element={<FAQPage/>} />
+          <Route path="/login" element={<RegisterPage/>} />
+          <Route path="/otp" element={<OtpPage/>} />
+          <Route path="/profile" element={<ProfilePage/>} />
+  
+          <Route path="/thank-you" element={<ThankYouPage/>} />
+          <Route path="/contact" element={<ContactPage/>} />
+          <Route path='/blog' element={<BlogPage/>} />
+          <Route path='/privacy' element={<PrivacyPage/>} />
+          <Route path="/search" element={<SearchPage/>} />
+          <Route path="/review" element={<ReviewPage/>} />
+          <Route path="/product" element={<ProductPage/>} />
+          <Route path="/wish-list" element={<Navigate to='/login' replace />} />
+          <Route path="/order-list" element={<Navigate to='/login' replace />} />
+          <Route path="/invoice/:id" element={<Navigate to='/login' replace />} />
+          
+        </Routes>
+      </BrowserRouter>
+    )
+  }
     
   }
   

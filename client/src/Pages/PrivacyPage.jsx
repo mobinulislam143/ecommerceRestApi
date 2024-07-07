@@ -1,11 +1,13 @@
 import React from 'react';
+import Layout from '../components/Layout/Layout';
 
 function PrivacyPage(props) {
     const hStyle = {
         margin:'0', padding:'0'
     }
     return (
-        <div>
+       <Layout>
+         <div>
             <div className='container'>
                 <div className='privacy-wrapper my-4'>
                     <h3 style={hStyle}>INTRODUCTION</h3>
@@ -36,6 +38,7 @@ We may also collect personal information about you such as your name, organizati
                 </div>
             </div>
         </div>
+       </Layout>
     );
 }
 

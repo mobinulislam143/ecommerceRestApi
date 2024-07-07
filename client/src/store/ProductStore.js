@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { create } from 'zustand'
 
-const BaseUrl = "https://ecommerce-rest-97nlk99ch-mahi17.vercel.app/"
+const BaseUrl = "https://h-mart-api.onrender.com"
+// const BaseUrl = "https://h-mart.vercel.app"
+
 
 const ProductStore = create((set) =>({
     BrandList:[],
@@ -31,7 +33,7 @@ const ProductStore = create((set) =>({
     BrandListRequest:async() =>{
         
         try {
-            let res = await axios.get(`${BaseUrl}/api/ProductBrandList`); // Using absolute URL
+            let res = await axios.get(`${BaseUrl}/api/ProductBrandList`); 
             if (res.data['status'] === 'success') {
                 set({BrandList:res.data['data']})
             }
@@ -40,7 +42,7 @@ const ProductStore = create((set) =>({
         }
     },
     CategoryListRequest:async()=>{
-        let res = await axios.get('${BaseUrl}/api/ProductCategoryList')
+        let res = await axios.get(`${BaseUrl}/api/ProductCategoryList`)
         if(res.data['status']==='success'){
             set({CategoryList:res.data['data']})
         }
