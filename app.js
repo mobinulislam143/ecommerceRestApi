@@ -20,8 +20,11 @@ app.use(cors(allowedOrigins));
 
 // Security Middleware Implement
 app.use(cookieParser())
-app.use(cors())
-app.use(helmet())
+app.use(cors({
+  origin: 'http://localhost:5173/', // Replace with your frontend domain
+  methods: ['GET', 'POST'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+}));app.use(helmet())
 app.use(xss())
 app.use(hpp())
 

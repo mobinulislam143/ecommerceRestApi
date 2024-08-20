@@ -3,9 +3,16 @@ const {UserOtpService,
     SaveProfileService,
     ReadProfileService
 } = require('../services/UserService')
-exports.UserOtp= async(req,res) => {
-    let result = UserOtpService(req)
-    return res.status(200).json({status: "success", data: result})    
+
+
+
+exports.UserOtp = async (req, res) => {
+    try {
+        let result = await UserOtpService(req); 
+        return res.status(200).json(result); 
+    } catch (e) {
+        return res.status(500).json({ status: "fail", message: "Something Went Wrong" });
+    }
 }
 exports.VerifyLogin = async (req, res) => {
     let result = await VerifyOtpService(req);
