@@ -21,9 +21,9 @@ app.use(cors(allowedOrigins));
 // Security Middleware Implement
 app.use(cookieParser())
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://h-mart-shop.vercel.app'], // Remove trailing slashes
+  origin: ['http://localhost:5173', 'https://h-mart-shop.vercel.app'], // Ensure no trailing slashes
   methods: ['GET', 'POST'], // Allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
 }));
 
 app.use(helmet())
