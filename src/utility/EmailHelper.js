@@ -1,27 +1,29 @@
 const nodemailer=require('nodemailer');
+require("dotenv").config()
+let pass = process.env.SMTP_PASS
+let smtpTransport = require("nodemailer-smtp-transport");
 
 const EmailSend=async (EmailTo,EmailText,EmailSubject)=>{
 
-    let transporter = nodemailer.createTransport({
-        host: 'smtp-mail.outlook.com',
-        port: 587,
-        secure:false,
-        auth:{
-            user: 'mobinulislammahi@outlook.com',
-            pass: '1714525829mahi',
-        },
-        tls: {
-            rejectUnauthorized: false,
-        }
-    })
+    let transporter = nodemailer.createTransport(
+        smtpTransport ({
+                service: "Gmail",
+                auth: {
+                    user: "mobinulislammahi@gmail.com",
+                    pass: pass
+                },
+            }
+        )
+    );
     
     let mailOptions = {
-        from:'Mern E- commerce Solution <mobinulislammahi@outlook.com>',
+        from:'Universe Soft Tech Solution <mobinulislammahi@gmail.com>',
         to: EmailTo,
         subject: EmailSubject,
         text:EmailText,
     }
     return await transporter.sendMail(mailOptions);
 }
+
 
 module.exports=EmailSend;
