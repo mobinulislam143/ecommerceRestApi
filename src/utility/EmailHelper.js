@@ -68,7 +68,7 @@ const EmailSend = async (EmailTo, EmailText, EmailSubject) => {
                         <p>Our mission is to provide you with the best shopping experience possible. If you have any questions, concerns, or need assistance, feel free to reach out to our customer support team at any time.</p>
                         <p>Don't forget to check out our latest products and deals!</p>
                         <p>Click below to start shopping now:</p>
-                        <a href="https://www.hmart.com" class="cta-button">Shop Now</a>
+                        <a href="https://h-mart-shop.vercel.app/" class="cta-button">Shop Now</a>
                     </div>
                     <div class="footer">
                         <p>&copy; ${new Date().getFullYear()} H Mart. All rights reserved.</p>
