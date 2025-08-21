@@ -72,7 +72,7 @@ const EmailSend = async (EmailTo, EmailText, EmailSubject) => {
                     </div>
                     <div class="footer">
                         <p>&copy; ${new Date().getFullYear()} H Mart. All rights reserved.</p>
-                        <p>If you no longer wish to receive emails from us, please <a href="https://www.hmart.com/unsubscribe" style="color: #7f8c8d;">unsubscribe here</a>.</p>
+                        <p>If you no longer wish to receive emails from us, please <a href="https://h-mart-shop.vercel.app/unsubscribe" style="color: #7f8c8d;">unsubscribe here</a>.</p>
                     </div>
                 </body>
             </html>
